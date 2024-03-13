@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class GruposAyuda extends StatefulWidget {
@@ -11,79 +9,9 @@ class GruposAyuda extends StatefulWidget {
 
 class _GruposAyudaState extends State<GruposAyuda> {
 
-
-  int seconds= 0, minutes = 0, hours = 0;
-  String digitSeconds = "00" , digitMinutes = "00", digitHours = "00";
-  Timer? timer;
-  bool started = false; 
-  List laps = [];
-
-  void stop(){
-    timer!.cancel();
-    setState(() {
-      started = false;
-    });
-  }
-
-  void reset(){
-    timer!.cancel();
-    setState(() {
-      seconds = 0;
-      minutes = 0;
-      hours = 0;
-
-      digitSeconds = "00";
-      digitMinutes = "00";
-      digitHours = "00";
-
-      started = false;
-    });
-  }
-
-
-  void addLaps(){
-    String lap = "$digitHours:$digitMinutes:$digitSeconds";
-    setState(() {
-      laps.add(lap);
-    });
-  }
-
-  void start(){
-    started = true;
-    timer = Timer.periodic(Duration(seconds: 1), (timer) { 
-      int localSeconds = seconds +1;
-      int localMinutes = minutes;
-      int localHours = hours;
-
-      if(localSeconds>59){
-        if(localMinutes>59){
-          localHours++;
-          localMinutes = 0;
-        }else{
-          localMinutes++;
-          localSeconds = 0;
-        }
-      }
-      setState(() {
-        seconds = localSeconds;
-        minutes = localMinutes;
-        hours = localHours;
-        digitSeconds = (seconds >= 10) ?"$seconds":"0$seconds";
-        digitHours = (hours >= 10) ?"$hours":"0$hours";
-        digitMinutes = (minutes >= 10) ?"$minutes":"0$minutes";
-      });
-    });
-  }
-  
-  String obtenerTiempoActualizado() {
-    return "$digitHours:$digitMinutes:$digitSeconds";
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
       appBar: AppBar(
         title: const Text(
           ' Grupos de Ayuda',
@@ -93,111 +21,280 @@ class _GruposAyudaState extends State<GruposAyuda> {
           ),
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: Text(
-                  "Stopwatch",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 28.0,
-                    fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(left: 24, right: 24, top: 10),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 340,
+                  height: 43,
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(149, 201, 201, 201),
+                    borderRadius: BorderRadius.circular(40)
                   ),
-                ),
-              ),
-              SizedBox(height: 20,),
-              Center(
-                child: Text("$digitHours:$digitMinutes:$digitSeconds", 
-                style: TextStyle(
-                  color: Colors.white, 
-                  fontSize: 82.0,
-                  fontWeight: FontWeight.w600,
-                ),),
-              ),
-              Container(
-                height: 200.0,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(8.0)
-                ),
-                child: ListView.builder(
-                  itemCount: laps.length,
-                  itemBuilder: (context, index){
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Lap n°${index+1}",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.search),
+                        onPressed: () {
+                        },
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Buscar',
+                            hintStyle: TextStyle(color: Colors.grey.withOpacity(0.8)),
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: 30,),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Container(
+                    width: 330,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                const Color(0xFF30D5C8).withOpacity(0.85), 
+                                const Color(0xFF30D5C8).withOpacity(0.28), 
+                              ],
+                            ),
+                      border: Border.all(color: const Color.fromARGB(255, 6, 166, 153), width: 0.8),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: const Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: CircleAvatar(
+                              radius: 20,
+                              backgroundColor: Colors.white, 
+                              child: Icon(Icons.people, color: Color.fromARGB(255, 0, 89, 71)), 
                             ),
                           ),
-                          Text(
-                            "${laps[index]}",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 70.0, right: 20.0, bottom: 19), 
+                            child: Text(
+                              'Superación de Alcohol', 
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                             ),
-                          )
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: RawMaterialButton(
-                      onPressed: () {
-                        (!started) ?start():stop();
-                      },
-                      shape: const StadiumBorder(
-                        side: BorderSide(color: Colors.yellow),
-                      ),
-                      child: Text(
-                        (!started) ? "Start" : "Pause",
-                        style: TextStyle(color: Colors.white),
-                      ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 70.0, right: 20.0, top:22), 
+                            child: Text(
+                              '67 integrantes', 
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(width: 8.0,),
-                  IconButton(
-                    color: Colors.white,
-                    onPressed: (){
-                      addLaps();
-                    }, 
-                    icon: Icon(Icons.flag)),
-                  Expanded(
-                    child: RawMaterialButton(
-                      onPressed: () {
-                        reset();
-                      },
-                      fillColor: Colors.yellow,
-                      shape: const StadiumBorder(
-                      ),
-                      child: Text(
-                        "Reset",
-                        style: TextStyle(color: Colors.white),
-                      ),
+                ),
+              ],
+            ),
+            SizedBox(height: 15,),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Container(
+                    width: 330,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                const Color(0xFF30D5C8).withOpacity(0.85), 
+                                const Color(0xFF30D5C8).withOpacity(0.28), 
+                              ],
+                            ),
+                      border: Border.all(color: const Color.fromARGB(255, 6, 166, 153), width: 0.8),
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                  )
-                ],
-              )
-
-            ],
-          ),
-        )),
+                    child: const Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: CircleAvatar(
+                              radius: 20,
+                              backgroundColor: Colors.white, 
+                              child: Icon(Icons.people, color: Color.fromARGB(255, 0, 89, 71)), 
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 70.0, right: 20.0, bottom: 19), 
+                            child: Text(
+                              'Superación de Tabaco', 
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 70.0, right: 20.0, top:22), 
+                            child: Text(
+                              '34 integrantes', 
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 15,),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Container(
+                    width: 330,
+                    height: 75,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                const Color(0xFF30D5C8).withOpacity(0.85), 
+                                const Color(0xFF30D5C8).withOpacity(0.28), 
+                              ],
+                            ),
+                      border: Border.all(color: const Color.fromARGB(255, 6, 166, 153), width: 0.8),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: const Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: CircleAvatar(
+                              radius: 20,
+                              backgroundColor: Colors.white, 
+                              child: Icon(Icons.people, color: Color.fromARGB(255, 0, 89, 71)),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 70.0, right: 20.0, bottom: 19), 
+                            child: Text(
+                              'Superación del Cigarrillo Electrónico', 
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, height: 1.0),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 70.0, right: 20.0, top:35), 
+                            child: Text(
+                              '49 integrantes', 
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 15,),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Container(
+                    width: 330,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                const Color(0xFF30D5C8).withOpacity(0.85), 
+                                const Color(0xFF30D5C8).withOpacity(0.28), 
+                              ],
+                            ),
+                      border: Border.all(color: const Color.fromARGB(255, 6, 166, 153), width: 0.8),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: const Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: CircleAvatar(
+                              radius: 20,
+                              backgroundColor: Colors.white, // Color del círculo
+                              child: Icon(Icons.people, color: Color.fromARGB(255, 0, 89, 71)), 
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 70.0, right: 20.0, bottom: 19), 
+                            child: Text(
+                              'Superación de Marihuana', 
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 70.0, right: 20.0, top:22), 
+                            child: Text(
+                              '53 integrantes', 
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 15,),
+          ],
+        ),
+      ),
     );
   }
 }

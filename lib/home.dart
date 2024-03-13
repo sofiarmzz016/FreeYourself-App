@@ -112,12 +112,14 @@ class _HomePageState extends State<HomePage> {
                         value: 'opcion5',
                         child: Text('Metanfetamina'),
                       ),
+                      DropdownMenuItem(
+                        value: 'opcion6',
+                        child: Text('Refresco'),
+                      ),
                     ],
                     onChanged: (value) {
-                      // Aquí puedes manejar la opción seleccionada
                       print('Opción seleccionada: $value');
                     },
-                    // Valor inicial, si lo necesitas
                     // value: _selectedOption,
                     hint: const Text(
                       'Selecciona una opción',
@@ -136,28 +138,29 @@ class _HomePageState extends State<HomePage> {
                 width: 343,
                 height: 68,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFC0F3F0),
+                  color: const Color.fromARGB(255, 136, 225, 219),
                   borderRadius: BorderRadius.circular(8.0),
-                  boxShadow: [
+                  border: Border.all(color: const Color.fromARGB(255, 6, 166, 153), width: 1.0),
+                  /**boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.5), // Color de la sombra
-                      blurRadius: 2, // Radio de desenfoque de la sombra
-                      offset: const Offset(0, 2), // Desplazamiento vertical positivo para sombra abajo
+                      color: Colors.grey.withOpacity(0.5), 
+                      blurRadius: 2, 
+                      offset: const Offset(0, 1), 
                     ),
-                  ],
+                  ],**/
                 ),
                 child: const Row( 
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
+                      padding: EdgeInsets.only(left: 20.0),
                       child: Icon(Icons.message_outlined, color: Colors.black54), 
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(10.0, 6.0, 10.0, 8.0),
+                      padding: EdgeInsets.fromLTRB(10.0, 6.0, 10.0, 8.0),
                       child: Text(
                         " Como te sientes hoy?",
                         style: TextStyle(
-                          color: Colors.black54,
+                          color: Color.fromARGB(171, 0, 0, 0),
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
                         ),
@@ -192,15 +195,16 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Container(
                           width: 343,
-                          height: 102,
+                          height: 108,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
+                            border: Border.all(color: const Color.fromARGB(255, 6, 166, 153), width: 0.8),
                             gradient: LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                const Color(0xFF30D5C8).withOpacity(1.0), 
-                                const Color(0xFF30D5C8).withOpacity(0.4), 
+                                const Color(0xFF30D5C8).withOpacity(0.85), 
+                                const Color(0xFF30D5C8).withOpacity(0.28), 
                               ],
                             ),
                           ),
@@ -208,19 +212,19 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(8.5),
                                 child: Row(
                                   children: [
                                     Icon(
-                                      Icons.timer, 
-                                      color: Colors.white,
+                                      Icons.timer_outlined, 
+                                      color: Colors.black,
                                       size: 24,
                                     ),
                                     SizedBox(width: 6), 
                                     Text(
                                       "Tiempo sin adicciones",
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        color: Colors.black87,
                                         fontSize: 16,
                                       ),
                                     ),
@@ -228,22 +232,75 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                padding: EdgeInsets.symmetric(horizontal: 55.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center, 
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
                                   children: [
-                                    Text(
-                                      "1234567890",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                      ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "00",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 26,
+                                            fontWeight:FontWeight.w800, 
+                                          ),
+                                        ),
+                                        Text(
+                                          " meses",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            fontWeight:FontWeight.w600, 
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "00",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 26,
+                                            fontWeight:FontWeight.w800, 
+                                          ),
+                                        ),
+                                        Text(
+                                          " días",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            fontWeight:FontWeight.w600, 
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "00",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 26,
+                                            fontWeight:FontWeight.w800, 
+                                          ),
+                                        ),
+                                        Text(
+                                          " horas",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            fontWeight:FontWeight.w600, 
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
                               ),
                             ],
-                          )
+                          ),
                         ),
                       ],
                     ),
@@ -256,63 +313,7 @@ class _HomePageState extends State<HomePage> {
                           height: 80,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                const Color(0xFF30D5C8).withOpacity(1.0), // Color del degradado más claro
-                                const Color(0xFF30D5C8).withOpacity(0.4), // Color del degradado más oscuro
-                              ],
-                            ),
-                          ),
-                          child: const Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(7.0),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.attach_money, // Icono de dinero
-                                      size: 22, // Tamaño del icono
-                                      color: Colors.white, // Color del icono
-                                    ),
-                                    SizedBox(width: 4), // Espacio entre el icono y el texto
-                                    Text(
-                                      "Dinero ahorrado",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "12,000",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 19,
-                                        fontWeight: FontWeight.w800,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 11),
-                        Container(
-                          width: 166,
-                          height: 80,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
+                            border: Border.all(color: const Color.fromARGB(255, 6, 166, 153), width: 0.8),
                             gradient: LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
@@ -330,15 +331,73 @@ class _HomePageState extends State<HomePage> {
                                 child: Row(
                                   children: [
                                     Icon(
-                                      Icons.smoking_rooms_rounded, // Icono de dinero
-                                      size: 22, // Tamaño del icono
-                                      color: Colors.white, // Color del icono
+                                      Icons.attach_money, 
+                                      size: 22, 
+                                      color: Color.fromARGB(255, 43, 151, 47), 
                                     ),
-                                    SizedBox(width: 7), // Espacio entre el icono y el texto
+                                    SizedBox(width: 4), 
+                                    Text(
+                                      "Dinero ahorrado",
+                                      style: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "\$0.0",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 11),
+                        Container(
+                          width: 166,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            border: Border.all(color: const Color.fromARGB(255, 6, 166, 153), width: 0.8),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                const Color(0xFF30D5C8).withOpacity(1.0), 
+                                const Color(0xFF30D5C8).withOpacity(0.4), 
+                              ],
+                            ),
+                          ),
+                          child: const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(7.0),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.smoking_rooms_rounded, 
+                                      size: 22, 
+                                      color: Colors.orange, 
+                                    ),
+                                    SizedBox(width: 7), 
                                     Text(
                                       "Cigarros",
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        color: Colors.black87,
                                         fontSize: 15,
                                       ),
                                     ),
@@ -351,9 +410,9 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "150",
+                                      "0",
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        color: Colors.black87,
                                         fontSize: 19,
                                         fontWeight: FontWeight.w800,
                                       ),
@@ -375,12 +434,13 @@ class _HomePageState extends State<HomePage> {
                           height: 80,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
+                            border: Border.all(color: const Color.fromARGB(255, 6, 166, 153), width: 0.8),
                             gradient: LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                const Color(0xFF30D5C8).withOpacity(1.0), // Color del degradado más claro
-                                const Color(0xFF30D5C8).withOpacity(0.4), // Color del degradado más oscuro
+                                const Color(0xFF30D5C8).withOpacity(1.0),
+                                const Color(0xFF30D5C8).withOpacity(0.4), 
                               ],
                             ),
                           ),
@@ -388,19 +448,19 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(7.0),
+                                padding: EdgeInsets.all(7.5),
                                 child: Row(
                                   children: [
                                     Icon(
-                                      Icons.favorite, // Icono de dinero
-                                      size: 19, // Tamaño del icono
-                                      color: Colors.white, // Color del icono
+                                      Icons.favorite, 
+                                      size: 19, 
+                                      color: Color.fromARGB(255, 213, 95, 95)
                                     ),
-                                    SizedBox(width: 7), // Espacio entre el icono y el texto
+                                    SizedBox(width: 7), 
                                     Text(
                                       "Dias extra de vida",
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        color: Colors.black87,
                                         fontSize: 15,
                                       ),
                                     ),
@@ -413,7 +473,7 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "30",
+                                      "0",
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 19,
@@ -432,12 +492,13 @@ class _HomePageState extends State<HomePage> {
                           height: 80,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
+                            border: Border.all(color: const Color.fromARGB(255, 6, 166, 153), width: 0.8),
                             gradient: LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                const Color(0xFF30D5C8).withOpacity(1.0), // Color del degradado más claro
-                                const Color(0xFF30D5C8).withOpacity(0.4), // Color del degradado más oscuro
+                                const Color(0xFF30D5C8).withOpacity(1.0), 
+                                const Color(0xFF30D5C8).withOpacity(0.4), 
                               ],
                             ),
                           ),
@@ -445,15 +506,15 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(7.0),
+                                padding: EdgeInsets.all(7.5),
                                 child: Row(
                                   children: [
                                     Icon(
-                                      Icons.mood, // Icono de dinero
-                                      size: 21, // Tamaño del icono
-                                      color: Colors.white, // Color del icono
+                                      Icons.mood_rounded,
+                                      size: 21, 
+                                      color: Colors.blue, 
                                     ),
-                                    SizedBox(width: 7), // Espacio entre el icono y el texto
+                                    SizedBox(width: 7), 
                                     Text(
                                       "Seguimiento",
                                       style: TextStyle(
@@ -470,10 +531,10 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "Vas muy bien",
+                                      "--",
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 15,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),

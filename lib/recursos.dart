@@ -20,7 +20,6 @@ class _RecursosState extends State<Recursos> {
       flags: const YoutubePlayerFlags(
         autoPlay: false,
         mute: false,
-        
       ),
     )..addListener(_onPlayerStateChange);
   }
@@ -38,7 +37,7 @@ class _RecursosState extends State<Recursos> {
         title: const Text(
           'Recursos',
           style: TextStyle(
-            fontSize: 28,
+            fontSize: 31,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -62,7 +61,11 @@ class _RecursosState extends State<Recursos> {
                 padding: EdgeInsets.only(left: 20.0),
                 child: Text(
                   'Videos',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                    fontSize: 25, 
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromARGB(255, 39, 201, 187)
+                  ),
                 ),
               ),
             ),
@@ -86,8 +89,12 @@ class _RecursosState extends State<Recursos> {
               child: Padding(
                 padding: EdgeInsets.only(left: 20.0),
                 child: Text(
-                  'Imagenes',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                  'Imágenes',
+                  style: TextStyle(
+                    fontSize: 25, 
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromARGB(255, 39, 201, 187)
+                  ),
                 ),
               ),
             ),
@@ -121,13 +128,13 @@ class _RecursosState extends State<Recursos> {
                   padding: EdgeInsets.only(left: 1.0),
                   child: SizedBox(
                     height: 190.0,
-                    width: 330.0,
+                    width: 345.0,
                     child: Image.asset('assets/Imagen3.jpg'),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20), // Agregar espacio al final para evitar que el contenido esté demasiado cerca del borde inferior
+            const SizedBox(height: 40),
           ],
         ),
       ),
