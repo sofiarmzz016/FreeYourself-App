@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "686674403698",
+    "project_id": "free-yourself-app-830fa",
+    "storage_bucket": "free-yourself-app-830fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686674403698:android:159911fdea3d8c6cbd7deb",
+        "android_client_info": {
+          "package_name": "com.example.free_yourself_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNDHMls4UeHHiZv70oGyRJa2kVoJah434"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
