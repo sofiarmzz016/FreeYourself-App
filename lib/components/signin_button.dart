@@ -17,7 +17,14 @@ class SignInButton extends StatelessWidget {
         padding: const EdgeInsets.all(25),
         margin: const EdgeInsets.symmetric(horizontal:25),
         decoration: BoxDecoration(
-          color: Colors.teal.shade200,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color(0xFF30D5C8).withOpacity(0.85), 
+              const Color(0xFF30D5C8).withOpacity(0.5), 
+            ],
+          ),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Center(
