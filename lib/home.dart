@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -8,6 +9,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +23,17 @@ class _HomePageState extends State<HomePage> {
               ' ¡Hola, usuario!',
               style: TextStyle(
                 fontSize: 33,
-                fontWeight:FontWeight.w600,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
         ),
+        actions: [
+          IconButton(
+            onPressed: signUserOut,
+            icon: Icon(Icons.logout),
+          ),
+        ],
       ),
       body: SingleChildScrollView( 
         child: Center(
