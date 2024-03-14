@@ -86,6 +86,15 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 50),
                   Text(
+                    'FREE YOURSELF',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 6, 166, 153),
+                      fontSize: 28,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  SizedBox(height: 25),
+                  Text(
                     '¡Bienvenido de vuelta!',
                     style: TextStyle(
                       color: Colors.grey[700],
